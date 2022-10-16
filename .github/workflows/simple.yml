@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Python version commands
         run: python -V
-        shell: python
+
 
 
 
