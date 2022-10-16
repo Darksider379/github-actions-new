@@ -15,9 +15,9 @@ jobs:
         run: |
           pwd
           ls
-          echo "$GITHUB_SHA"
-          echo "$GITHUB_REPOSITORY"
-          echo "$GITHUB_WORKSPACE"
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
           echo "${{ github.token }}"
       - name: Simple JS actions
         id: greet
