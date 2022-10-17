@@ -1,11 +1,24 @@
 name: Actions Workflow
 
 on:
-  schedule:
-    - cron: "0/5 * * * *"
-  #push:
-  pull_request:
-    types: [closed, opened, reopened]
+  #schedule:
+  #  - cron: "0/5 * * * *"
+  push:
+    branches:
+      - master  ####################Trigger WF only when code is pushed to master branch
+      - 'features/*' ###################Trigger WF only which code is pushed to branche names starting with features
+      - 'features/**' #################This pattern is similar to the above but it will match features/feat/abc as well 
+    
+    tags:
+      - v1.* ####################Trigger WF only when branch version is V1 or any minor release for V1
+    
+    paths:
+      - "**.js" #################Trigger WF only when there is a change in js files
+
+#     branches-ignore: ##############Similar to branches, we can also use branches-ignore to ignore trigger from any branch.
+#       - ""
+ # pull_request:
+ #   types: [closed, opened, reopened]
 
 jobs:
   run-github-actions:
