@@ -3,12 +3,12 @@ on: push
 
 jobs:
   githubFunctions:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: github functions output
         run: |
           echo ${{contains('hello', 'll')}}
-          echo ${{ startWith('hello', 'hi')  }}
+          echo ${{ startsWith('hello', 'hi')  }}
           echo ${{ endsWith('hello', 'lo')}}
           echo ${{ format('hello {0} {1} {2}', 'World', '!', '!') }}
 
