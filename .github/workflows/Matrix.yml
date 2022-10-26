@@ -4,15 +4,24 @@ on: push
 jobs:
   node-version:
     strategy:
-      fail-fast: true
+      fail-fast: true  ##################### If fail-fast is set to true, subsequent runs for node_version will not run if current versiin fails.
       matrix: 
-        node_version: [6, 8, 10]
+        node_version: [6, 8, 10]  ############### This defines the versions of node for which job will run
+        exclude:
+          - node_version: 6   ############Exclude execution of job on node version 6 
+        include:
+          - node_version: 8   ############ Adding additional attributes to existing nodes defined in the matrix 
+            is_ubuntu_8: "true"
     runs-on: ubuntu-latest
+    env:
+      IS_UBUNTU_8 : ${{ matrix.is_ubuntu_8 }}
     steps:
       - name: log node version 
         run: npm -v 
       - uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node_version }}
+          node-version: ${{ matrix.node_version }}  ############ Referencing node versions from matrix
       - name: log node version 
-        run: npm -v 
+        run: | 
+          npm -v
+          echo $IS_UBUNTU_8 
