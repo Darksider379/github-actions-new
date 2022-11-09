@@ -2,6 +2,27 @@ name: Container
 on: push
 
 jobs:
+  docker-steps:
+    runs-on: ubuntu-latest
+    #####Running docker container in a job##########
+    container:
+      image: node:10.18.0-jessie
+    steps:
+    #####Running Docker container in a step###############
+      - name: log node version
+        run: node -v 
+      - name: step with docker 
+    #####Using docker image in a step######################
+        uses: docker://node:12.14.1-alpine3.10
+    #####Overriding dockerfile entrypoint###################
+        with:
+          entrypoint: '/bin/echo'
+          args: 'Hello World!!'
+      - name: log node version again
+        uses: docker://node:12.14.1-alpine3.10
+        with:
+          entrypoint: '/usr/local/bin/node'
+          args: '-v'
   node-docker:
     runs-on: ubuntu-latest
     container: 
@@ -12,4 +33,3 @@ jobs:
         run: |
           node -v
           cat /etc/os-release
-          
