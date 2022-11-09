@@ -3,7 +3,7 @@ name: Actions Workflow
 on:
   #schedule:
   #  - cron: "0/5 * * * *"
-  push:
+  pull_request:
     branches:
       - master  ####################Trigger WF only when code is pushed to master branch
       - 'features/*' ###################Trigger WF only which code is pushed to branche names starting with features
