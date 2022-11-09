@@ -9,11 +9,12 @@ jobs:
       image: node:10.18.0-jessie
     steps:
       - uses: actions/checkout@v1
+    ######Running local script using docker ###############
       - name: Run a local script
         uses: docker://node:12.14.1-alpine3.10
         with:
           entrypoint: ./script.sh
-          args: Hello World
+          args: "Hello World"
     #####Running Docker container in a step###############
       - name: log node version
         run: node -v 
